@@ -1,0 +1,39 @@
+workflows:
+  ios-simulator-build:
+    name: MK-IOS Simulator Build
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    environment:
+      xcode: latest
+      vars:
+        XCODE_PROJECT: "MK-IOS.xcodeproj"
+        XCODE_SCHEME: "MK-IOS"
+
+    scripts:
+      - name: Install XcodeGen
+        script: |
+          brew install xcodegen
+
+      - name: Generate Xcode project
+        script: |
+          xcodegen generate
+
+      - name: Show schemes
+        script: |
+          xcodebuild -list -project "$XCODE_PROJECT"
+
+      - name: Build for iOS Simulator
+        script: |
+          xcodebuild build \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+    artifacts:
+      - ~/Library/Developer/Xcode/DerivedData/**/Build/Products/**/*.app
+      - ~/Library/Developer/Xcode/DerivedData/**/Build/Products/**/*.dSYM
