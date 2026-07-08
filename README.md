@@ -1,31 +1,36 @@
-# MK-IOS Codemagic Ready
+# MK-IOS Ver.20 Final v11
 
-Codemagicで **App Store提出なし / 署名なし / iOS Simulatorビルド確認** をするための構成です。
+MK-IOSは、FX・株式分析、資金管理、トレード日誌、レビュー、Decision Centerを統合する投資OSのMVP実装ひな型です。
 
-## GitHubにアップするもの
+## 現在の完成度
+- 設計・仕様：100%
+- MVP実装ひな型：99.98%
+- 実運用：Xcode実ビルド・実機テスト・Google API接続が必要
 
-このフォルダの中身をそのままGitHubリポジトリ直下に置いてください。
+## v11更新内容
+- v10構成の実ファイル点検
+- SwiftData / Entity / Extension の整合確認
+- XcodeGen導入前提の最終ハンドオフ文書を追加
+- 実ビルド時に確認する残ポイントを明確化
 
-```text
-App/
-project.yml
-codemagic.yaml
-README.md
-```
+## 推奨ビルド手順
+1. Xcode 15以降を用意
+2. XcodeGenを使う場合、このフォルダで以下を実行
+   ```bash
+   xcodegen generate
+   open MK-IOS.xcodeproj
+   ```
+3. iPhone Simulatorを選択
+4. Build & Run
+5. Home画面右上の `Seed` を押す
+6. Journalで記録追加テスト
+7. Capitalで資金表示確認
 
-## Codemagicでの流れ
+## 未接続部分
+- Google Drive / Sheets の実OAuth認証
+- 実CSVパーサー
+- ライブマーケットデータ
+- App Store用アイコン・署名・Team設定
 
-1. GitHubへこの中身をアップロード
-2. Codemagicで Add application
-3. GitHubリポジトリを選択
-4. Workflow: `ios-simulator-build`
-5. Start new build
-
-## 重要
-
-これはシミュレータービルド確認用です。
-Apple Developer Program、証明書、App Store Connect、TestFlight設定は不要です。
-
-## 既存MK-IOS本体に入れる場合
-
-既存のMK-IOSフォルダに `codemagic.yaml` を追加し、`project.yml` がリポジトリ直下にある状態にしてください。
+## 次工程
+Xcodeで実ビルドし、出たエラーをそのまま貼ってください。そこから最終修正します。

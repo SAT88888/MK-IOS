@@ -14,13 +14,25 @@ targets:
     deploymentTarget: '17.0'
     sources:
       - path: App
+      - path: Models
+      - path: Managers
+      - path: Stores
+      - path: Services
+      - path: Utilities
+      - path: Views
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.mkios.app
         PRODUCT_MODULE_NAME: MKIOS
         MARKETING_VERSION: 20.0
-        CURRENT_PROJECT_VERSION: 1
-        GENERATE_INFOPLIST_FILE: YES
+        CURRENT_PROJECT_VERSION: 10
         INFOPLIST_KEY_CFBundleDisplayName: MK-IOS
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
         TARGETED_DEVICE_FAMILY: 1
+        GENERATE_INFOPLIST_FILE: YES
+    info:
+      path: Generated/Info.plist
+      properties:
+        CFBundleDisplayName: MK-IOS
+        UILaunchScreen: {}

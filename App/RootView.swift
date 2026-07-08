@@ -3,31 +3,12 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         TabView {
-            NavigationStack {
-                List {
-                    Section("Decision Center") {
-                        Text("MK-IOS Ver.20 Final")
-                        Text("条件成立まで待機。無理に入らない。")
-                    }
-                    Section("Build Check") {
-                        Text("Codemagic Simulator Build Ready")
-                    }
-                }
-                .navigationTitle("MK-IOS")
-            }
-            .tabItem { Label("Home", systemImage: "house") }
-
-            NavigationStack { Text("FX") .navigationTitle("FX") }
-                .tabItem { Label("FX", systemImage: "chart.line.uptrend.xyaxis") }
-
-            NavigationStack { Text("Stock") .navigationTitle("Stock") }
-                .tabItem { Label("Stock", systemImage: "building.2") }
-
-            NavigationStack { Text("Journal") .navigationTitle("Journal") }
-                .tabItem { Label("Journal", systemImage: "book") }
-
-            NavigationStack { Text("Capital") .navigationTitle("Capital") }
-                .tabItem { Label("Capital", systemImage: "yensign.circle") }
+            HomeView().tabItem { Label("Home", systemImage: "house") }
+            FXListView().tabItem { Label("FX", systemImage: "chart.line.uptrend.xyaxis") }
+            StockListView().tabItem { Label("Stock", systemImage: "building.2") }
+            JournalListView().tabItem { Label("Journal", systemImage: "book") }
+            CapitalView().tabItem { Label("Capital", systemImage: "yensign.circle") }
+            RuleSettingView().tabItem { Label("Settings", systemImage: "gearshape") }
         }
     }
 }
